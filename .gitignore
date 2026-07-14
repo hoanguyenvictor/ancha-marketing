@@ -1,3 +1,6 @@
 .DS_Store
 _grid.jpg
 *.tmp
+
+# Ngăn nội bộ — KHÔNG đưa lên GitHub (code tự động + hồ sơ có giá/tài khoản)
+_noi-bo/
