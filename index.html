@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancha Marketing — Cùng bạn xây dựng kinh doanh online từ số 0</title>
+<meta name="description" content="Ancha Marketing — thương hiệu của Hoa Nguyễn, đồng hành cùng người Việt xây dựng công việc kinh doanh online tại nhà qua ebook, khoá học và cộng đồng thực chiến.">
+
+<meta property="og:title" content="Ancha Marketing — Cùng bạn xây dựng kinh doanh online từ số 0">
+<meta property="og:description" content="Ebook, khoá học và cộng đồng thực chiến của Hoa Nguyễn dành cho người mới bắt đầu kinh doanh online tại nhà.">
+<meta property="og:image" content="https://anchamarketing.com/assets/hoa-chan-dung.jpg">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://anchamarketing.com/">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { cream:'#F5E8DE', cream2:'#EFDFD2', cream3:'#E7D4C4', ink:'#4A3222', brown:'#6B4A34', brownd:'#3A2717', gold:'#C9A876', goldd:'#B08C55' },
+    fontFamily: { hand:['"Baloo 2"','cursive'], script:['"Dancing Script"','cursive'], body:['"Be Vietnam Pro"','sans-serif'] }
+  }}}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:'Be Vietnam Pro',sans-serif}
+  h1,h2,h3,.font-hand{font-family:'Baloo 2',cursive}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+  .paper{background-image:radial-gradient(rgba(74,50,34,.035) 1px,transparent 1px);background-size:22px 22px}
+  .underline-hand{background:linear-gradient(120deg,rgba(201,168,118,.55) 0 100%);background-repeat:no-repeat;background-position:0 88%;background-size:100% 40%}
+  .card-hover{transition:transform .3s ease,box-shadow .3s ease}
+  .card-hover:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(58,39,23,.18)}
+</style>
+</head>
+<body class="bg-cream text-ink antialiased">
+
+<!-- ===== NAV ===== -->
+<nav class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur border-b border-cream3">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="./" class="leading-tight">
+      <div class="font-script text-2xl text-brown">Ancha Marketing</div>
+      <div class="text-[10px] tracking-[.25em] text-brown/70 uppercase -mt-1">by Hoa Nguyễn</div>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-brown">
+      <a href="#khoa-hoc" class="hover:text-ink">Khoá học</a>
+      <a href="#ve-hoa" class="hover:text-ink">Về Hoa</a>
+      <a href="#cong-dong" class="hover:text-ink">Cộng đồng</a>
+      <a href="#lien-he" class="hover:text-ink">Liên hệ</a>
+    </div>
+    <a href="#khoa-hoc" class="inline-flex items-center gap-2 bg-brown text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brownd transition">
+      Khám phá khoá học
+    </a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="pt-24 pb-14 sm:pt-32 sm:pb-20 px-4 paper">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+    <div class="text-center lg:text-left">
+      <span class="inline-block bg-cream2 text-brown text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-cream3 mb-5">
+        Thương hiệu đồng hành kinh doanh online của Hoa Nguyễn
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-[3.3rem] font-extrabold leading-[1.1] text-ink">
+        Cùng bạn xây dựng<br>kinh doanh online <span class="underline-hand">từ số 0</span>
+      </h1>
+      <p class="mt-5 text-lg sm:text-xl text-brown/90 max-w-xl mx-auto lg:mx-0">
+        Ancha Marketing là nơi Hoa gói lại tất cả những gì mình học được sau nhiều năm thực chiến — thành ebook, khoá học và một cộng đồng để bạn không phải bắt đầu một mình.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+        <a href="#khoa-hoc" class="inline-flex items-center justify-center gap-2 bg-brown text-cream px-8 py-4 rounded-full text-lg font-bold hover:bg-brownd transition">
+          Khám phá khoá học
+        </a>
+        <a href="#ve-hoa" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-brown/40 text-brown px-8 py-4 rounded-full text-lg font-semibold hover:bg-cream2 transition">
+          Câu chuyện của Hoa
+        </a>
+      </div>
+    </div>
+    <div class="flex justify-center lg:justify-end">
+      <div class="relative">
+        <div class="absolute -inset-6 bg-gold/15 rounded-[2.5rem] blur-2xl"></div>
+        <img src="assets/hoa-chan-dung.jpg" alt="Hoa Nguyễn — nhà sáng lập Ancha Marketing"
+             class="relative w-full max-w-md rounded-3xl shadow-2xl ring-1 ring-cream3 object-cover">
+        <div class="absolute -bottom-5 -left-4 bg-cream border border-gold/50 rounded-2xl px-5 py-3 shadow-lg">
+          <div class="font-script text-2xl text-brown leading-tight">Hoa Nguyễn</div>
+          <div class="text-xs text-brown/70">Nhà sáng lập Ancha Marketing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="bg-cream2 border-y border-cream3">
+  <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div><div class="font-hand text-3xl font-extrabold text-brown">Từ số 0</div><div class="text-xs sm:text-sm text-brown/80 mt-1">đi lên bằng thực chiến</div></div>
+    <div><div class="font-hand text-3xl font-extrabold text-brown">Nhiều shop</div><div class="text-xs sm:text-sm text-brown/80 mt-1">vận hành online ổn định</div></div>
+    <div><div class="font-hand text-3xl font-extrabold text-brown">Kinh nghiệm thật</div><div class="text-xs sm:text-sm text-brown/80 mt-1">đúc từ hàng nghìn đơn</div></div>
+    <div><div class="font-hand text-3xl font-extrabold text-brown">Cộng đồng</div><div class="text-xs sm:text-sm text-brown/80 mt-1">đồng hành cùng nhau</div></div>
+  </div>
+</section>
+
+<!-- ===== VỀ ANCHA ===== -->
+<section class="py-16 sm:py-20 px-4">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <span class="font-script text-3xl text-gold">Ancha Marketing là gì?</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-1">Người đồng hành cho hành trình kinh doanh của bạn</h2>
+    <p class="mt-5 text-lg text-brown/90 leading-relaxed">
+      Ancha Marketing ra đời từ chính trải nghiệm thực chiến của Hoa Nguyễn — từ những ngày ngồi dưới sàn nhà gói từng đơn, đến khi vận hành cả một hệ thống bán hàng online. Ở đây, bạn không nhận lý thuyết suông, mà nhận đúng những gì Hoa đã làm thật và dùng thật mỗi ngày.
+    </p>
+  </div>
+  <div class="max-w-5xl mx-auto mt-12 grid sm:grid-cols-3 gap-6">
+    <div class="reveal bg-white/60 border border-cream3 rounded-2xl p-6 text-center">
+      <div class="text-4xl mb-3">📖</div>
+      <h3 class="font-bold text-lg text-ink">Ebook &amp; tài liệu</h3>
+      <p class="text-brown/85 text-sm mt-2">Cẩm nang cầm tay chỉ việc, đọc là làm được ngay.</p>
+    </div>
+    <div class="reveal bg-white/60 border border-cream3 rounded-2xl p-6 text-center">
+      <div class="text-4xl mb-3">🎓</div>
+      <h3 class="font-bold text-lg text-ink">Khoá học thực chiến</h3>
+      <p class="text-brown/85 text-sm mt-2">Học theo từng bước, có ví dụ thật, làm tới đâu hiểu tới đó.</p>
+    </div>
+    <div class="reveal bg-white/60 border border-cream3 rounded-2xl p-6 text-center">
+      <div class="text-4xl mb-3">🤝</div>
+      <h3 class="font-bold text-lg text-ink">Cộng đồng đồng hành</h3>
+      <p class="text-brown/85 text-sm mt-2">Nơi hỏi đáp, được hỗ trợ và cùng nhau tiến lên.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KHOÁ HỌC ===== -->
+<section id="khoa-hoc" class="py-16 sm:py-20 px-4 bg-cream2 border-y border-cream3">
+  <div class="max-w-5xl mx-auto text-center reveal">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-ink">Khoá học &amp; sản phẩm</h2>
+    <p class="mt-3 text-brown/80 text-lg">Lộ trình từ người mới bắt đầu đến làm chủ shop online.</p>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- 1. Ebook -->
+    <a href="ebook/" class="card-hover reveal group bg-cream rounded-3xl overflow-hidden border border-cream3 shadow-md flex flex-col">
+      <div class="aspect-[16/10] bg-cream2 flex items-center justify-center p-4 overflow-hidden">
+        <img src="assets/ebook-cover.jpg" alt="Ebook Xây Shop Bán Hàng Online Thành Công" class="h-full rounded-lg shadow-lg">
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <span class="text-xs font-semibold text-gold uppercase tracking-wide">Ebook · Bắt đầu tại đây</span>
+        <h3 class="font-bold text-xl text-ink mt-1">Xây Shop Bán Hàng Online Thành Công</h3>
+        <p class="text-brown/85 text-sm mt-2 flex-1">30 trang cầm tay chỉ việc cho người mới bắt đầu bán hàng online tại nhà.</p>
+        <span class="mt-4 text-sm font-semibold text-brown group-hover:text-ink">Xem thêm →</span>
+      </div>
+    </a>
+
+    <!-- 2. Viết Content -->
+    <a href="viet-content/" class="card-hover reveal group bg-cream rounded-3xl overflow-hidden border border-cream3 shadow-md flex flex-col">
+      <div class="aspect-[16/10] bg-cream2 flex items-center justify-center p-4 overflow-hidden">
+        <img src="assets/viet-content-cover.jpg" alt="Khoá học Viết Content Có Hồn Với AI" class="w-full rounded-lg shadow-lg">
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <span class="text-xs font-semibold text-gold uppercase tracking-wide">Khoá nền tảng</span>
+        <h3 class="font-bold text-xl text-ink mt-1">Viết Content Có Hồn Với AI</h3>
+        <p class="text-brown/85 text-sm mt-2 flex-1">Viết content chạm cảm xúc với sự trợ giúp của AI mà vẫn giữ được chất riêng của bạn.</p>
+        <span class="mt-4 text-sm font-semibold text-brown group-hover:text-ink">Xem thêm →</span>
+      </div>
+    </a>
+
+    <!-- 3. Nhập hàng — TODO: đổi link sang trang khoá khi có -->
+    <a href="https://zalo.me/g/jbrkjj595" target="_blank" rel="noopener" class="card-hover reveal group bg-cream rounded-3xl overflow-hidden border border-cream3 shadow-md flex flex-col">
+      <div class="aspect-[16/10] bg-gradient-to-br from-cream2 to-cream3/60 flex items-center justify-center">
+        <span class="text-6xl">📦</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <span class="text-xs font-semibold text-gold uppercase tracking-wide">Chuyên sâu nhập hàng</span>
+        <h3 class="font-bold text-xl text-ink mt-1">Tự Nhập Hàng Taobao &amp; 1688 Cùng Hoa</h3>
+        <p class="text-brown/85 text-sm mt-2 flex-1">Tự tìm nguồn, đặt và gom hàng tận gốc từ Taobao &amp; 1688 — chủ động nguồn hàng, tối ưu giá vốn.</p>
+        <span class="mt-4 text-sm font-semibold text-brown group-hover:text-ink">Xem thêm →</span>
+      </div>
+    </a>
+
+    <!-- 4. Chạy Ads — TODO: đổi link sang trang khoá khi có -->
+    <a href="https://zalo.me/g/jbrkjj595" target="_blank" rel="noopener" class="card-hover reveal group bg-cream rounded-3xl overflow-hidden border border-cream3 shadow-md flex flex-col">
+      <div class="aspect-[16/10] bg-gradient-to-br from-cream2 to-cream3/60 flex items-center justify-center">
+        <span class="text-6xl">📣</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <span class="text-xs font-semibold text-gold uppercase tracking-wide">Tạo doanh thu</span>
+        <h3 class="font-bold text-xl text-ink mt-1">Tự Thân Chạy Ads – Lên Camp Ra Đơn</h3>
+        <p class="text-brown/85 text-sm mt-2 flex-1">Tự tay lên chiến dịch quảng cáo, đọc số &amp; tối ưu để ra đơn đều mà không phụ thuộc ai.</p>
+        <span class="mt-4 text-sm font-semibold text-brown group-hover:text-ink">Xem thêm →</span>
+      </div>
+    </a>
+
+    <!-- 5. Flagship — TODO: đổi link sang trang khoá khi có -->
+    <a href="https://zalo.me/g/jbrkjj595" target="_blank" rel="noopener" class="card-hover reveal group bg-cream rounded-3xl overflow-hidden border-2 border-gold shadow-md flex flex-col relative">
+      <span class="absolute top-3 right-3 z-10 bg-gold text-white text-xs font-bold px-3 py-1 rounded-full">Toàn diện</span>
+      <div class="aspect-[16/10] bg-gradient-to-br from-brown to-brownd flex items-center justify-center">
+        <span class="text-6xl">👑</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <span class="text-xs font-semibold text-goldd uppercase tracking-wide">Chương trình toàn diện</span>
+        <h3 class="font-bold text-xl text-ink mt-1">Công Thức Làm Chủ Shop Online Thành Công</h3>
+        <p class="text-brown/85 text-sm mt-2 flex-1">Lộ trình đầy đủ từ A–Z: chọn sản phẩm, nhập hàng, content, chạy ads, bán hàng &amp; chăm khách.</p>
+        <span class="mt-4 text-sm font-semibold text-brown group-hover:text-ink">Xem thêm →</span>
+      </div>
+    </a>
+
+  </div>
+  <p class="text-center text-sm text-brown/60 mt-8 reveal">Một số khoá đang hoàn thiện trang riêng — bấm “Xem thêm” để được Hoa tư vấn trực tiếp.</p>
+</section>
+
+<!-- ===== VỀ HOA ===== -->
+<section id="ve-hoa" class="py-16 sm:py-20 px-4">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+    <div class="reveal order-1">
+      <div class="relative">
+        <img src="assets/hoa-workspace.jpg" alt="Không gian làm việc của Hoa Nguyễn" class="rounded-3xl shadow-xl ring-1 ring-cream3 w-full object-cover">
+        <div class="absolute -bottom-5 right-4 bg-cream border border-gold/50 rounded-2xl px-5 py-3 shadow-lg">
+          <div class="font-hand text-xl font-bold text-ink leading-tight">Việc thật, người thật</div>
+          <div class="text-xs text-brown/80">không phông nền dựng sẵn</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal order-2">
+      <span class="font-script text-3xl text-gold">Người đứng sau Ancha</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-ink mt-1">Hoa Nguyễn</h2>
+      <div class="mt-5 space-y-4 text-brown/90 text-lg leading-relaxed">
+        <p>Có một quãng Hoa từng gánh khoản nợ hơn 3 tỷ. Không bằng cấp kinh doanh, không mối quan hệ — chỉ có một chiếc điện thoại và quyết tâm bắt đầu lại từ đầu.</p>
+        <p>Hoa bắt đầu bán hàng online từ đúng con số 0, sai lên sai xuống, rồi từng chút một dựng lên một hệ thống nhiều shop vận hành ổn định mỗi ngày.</p>
+        <p>Giờ đây, qua Ancha Marketing, Hoa muốn rút ngắn con đường cho những người đi sau — để bạn không phải trả giá bằng nhiều năm mày mò như mình từng trải qua.</p>
+      </div>
+      <div class="mt-6 font-script text-3xl text-brown">Hoa Nguyễn</div>
+      <div class="text-sm text-brown/70">Nhà sáng lập · Ancha Marketing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CỘNG ĐỒNG ===== -->
+<section id="cong-dong" class="py-16 sm:py-20 px-4 bg-brownd text-cream">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <span class="font-script text-3xl text-gold">Cộng đồng</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold mt-1">Viết Lại Từ Số 0 – Cùng Hoa</h2>
+    <p class="mt-4 text-lg text-cream/85">Nơi những người đang bắt đầu kinh doanh online gặp nhau, hỏi đáp, nhận thêm mẹo thực chiến và được Hoa đồng hành trực tiếp.</p>
+    <a href="https://zalo.me/g/jbrkjj595" target="_blank" rel="noopener"
+       class="mt-7 inline-flex items-center justify-center gap-2 bg-[#0068FF] text-white px-8 py-4 rounded-full text-lg font-bold hover:brightness-95 transition">
+      💬 Tham gia nhóm Zalo miễn phí
+    </a>
+  </div>
+</section>
+
+<!-- ===== LIÊN HỆ / FOOTER ===== -->
+<footer id="lien-he" class="bg-cream2 border-t border-cream3 pt-14 pb-8 px-4 text-brown">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
+    <div class="md:col-span-1">
+      <div class="font-script text-2xl text-brown">Ancha Marketing</div>
+      <div class="text-[10px] tracking-[.25em] text-brown/60 uppercase">by Hoa Nguyễn</div>
+      <p class="text-sm mt-3 text-brown/80">Đồng hành cùng người Việt xây dựng công việc kinh doanh online tại nhà — từ số 0.</p>
+    </div>
+
+    <div>
+      <h4 class="font-bold text-ink mb-3">Khám phá</h4>
+      <ul class="space-y-2 text-sm">
+        <li><a href="./" class="hover:text-ink">Trang chủ</a></li>
+        <li><a href="#khoa-hoc" class="hover:text-ink">Khoá học</a></li>
+        <li><a href="ebook/" class="hover:text-ink">Ebook</a></li>
+        <li><a href="#ve-hoa" class="hover:text-ink">Về Hoa Nguyễn</a></li>
+        <li><a href="#cong-dong" class="hover:text-ink">Cộng đồng Zalo</a></li>
+      </ul>
+    </div>
+
+    <!-- THÔNG TIN PHÁP LÝ — chuẩn để đăng ký/thông báo với Bộ Công Thương -->
+    <div class="md:col-span-2">
+      <h4 class="font-bold text-ink mb-3">Thông tin doanh nghiệp</h4>
+      <ul class="space-y-1.5 text-sm text-brown/85 leading-relaxed">
+        <li><b>Hộ kinh doanh:</b> Nguyễn Hoa Ancha</li>
+        <li><b>Địa chỉ:</b> Số 445, khu đất DV Thăng Long 9, Lam Xá, Kim Chung, Hà Nội</li>
+        <li><b>Số ĐKKD / Mã số thuế:</b> <span class="text-brown/60">[Boss điền sau khi có]</span></li>
+        <li><b>Chủ hộ &amp; chịu trách nhiệm nội dung:</b> <span class="text-brown/60">[Boss điền họ tên đầy đủ]</span></li>
+        <li><b>Email:</b> <span class="text-brown/60">[Boss điền]</span></li>
+        <li><b>Điện thoại / Zalo:</b> <span class="text-brown/60">[Boss điền]</span></li>
+      </ul>
+
+      <!-- Sau khi đăng ký online.gov.vn, DÁN đoạn badge Bộ Công Thương vào đây (thay khối bên dưới):
+      <a href="http://online.gov.vn/Home/WebDetails/xxxxx" target="_blank" rel="noopener">
+        <img src="http://online.gov.vn/Public/Images/logoSaleNoti.png" alt="Đã thông báo Bộ Công Thương" width="150">
+      </a>
+      -->
+      <div class="mt-4 inline-flex items-center gap-2 border border-dashed border-brown/40 rounded-lg px-3 py-2 text-xs text-brown/60">
+        🛡️ Vị trí logo <b>“Đã thông báo Bộ Công Thương”</b> — gắn sau khi đăng ký tại online.gov.vn
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto border-t border-cream3 mt-10 pt-6 text-center text-xs text-brown/60">
+    © <span id="year"></span> Ancha Marketing — Hộ kinh doanh Nguyễn Hoa Ancha. Bảo lưu mọi quyền.
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

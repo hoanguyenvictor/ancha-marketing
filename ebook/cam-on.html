@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cảm ơn bạn! — Hoa Nguyễn</title>
+<meta name="robots" content="noindex">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%9B%3C/text%3E%3C/svg%3E">
+
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { cream:'#F5E8DE', cream2:'#EFDFD2', cream3:'#E7D4C4', ink:'#4A3222', brown:'#6B4A34', brownd:'#3A2717', gold:'#C9A876' },
+    fontFamily: { hand:['"Baloo 2"','cursive'], script:['"Dancing Script"','cursive'], body:['"Be Vietnam Pro"','sans-serif'] }
+  }}}
+</script>
+<style>
+  body{font-family:'Be Vietnam Pro',sans-serif}
+  h1,h2,.font-hand{font-family:'Baloo 2',cursive}
+  .paper{background-image:radial-gradient(rgba(74,50,34,.04) 1px,transparent 1px);background-size:22px 22px}
+  .pop{animation:pop .6s cubic-bezier(.2,.9,.3,1.4) both}
+  @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+  .cta-pulse{box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+</style>
+</head>
+<body class="bg-cream text-ink paper min-h-screen flex items-center justify-center px-4 py-12">
+
+<div class="max-w-xl w-full text-center">
+
+  <div class="pop w-24 h-24 mx-auto rounded-full bg-gold/25 flex items-center justify-center text-5xl">💛</div>
+
+  <span class="font-script text-3xl text-gold block mt-6">Cảm ơn bạn thật nhiều</span>
+  <h1 id="greet" class="text-3xl sm:text-4xl font-extrabold text-ink mt-1">Chào mừng bạn đã bắt đầu!</h1>
+
+  <p class="mt-5 text-lg text-brown/90 leading-relaxed">
+    Ebook <b>“Xây Shop Bán Hàng Online Thành Công”</b> đang được gửi tự động về email của bạn — bạn nhớ kiểm tra cả hộp thư <b>Quảng cáo / Spam</b> nếu chưa thấy trong ít phút nữa nhé.
+  </p>
+
+  <!-- Zalo group -->
+  <div class="mt-8 bg-white/70 border border-cream3 rounded-3xl p-7 shadow-xl">
+    <div class="font-hand text-2xl font-bold text-ink">Bước tiếp theo của bạn 👇</div>
+    <p class="text-brown/85 mt-2">Vào ngay nhóm cộng đồng <b>“Viết Lại Từ Số 0 – Cùng Hoa”</b> để hỏi đáp, nhận thêm mẹo và đồng hành cùng những người đang bắt đầu giống bạn.</p>
+    <a href="https://zalo.me/g/jbrkjj595" target="_blank" rel="noopener"
+       class="cta-pulse mt-5 inline-flex w-full items-center justify-center gap-2 bg-[#0068FF] text-white py-4 rounded-full text-lg font-bold hover:brightness-95 transition">
+      💬 Tham gia nhóm Zalo ngay
+    </a>
+    <p class="text-xs text-brown/60 mt-3">Nhóm miễn phí · nơi mình trực tiếp hỗ trợ bạn</p>
+  </div>
+
+  <div class="mt-8 text-brown/90">
+    <p class="font-script text-3xl text-brown">Hẹn gặp bạn trong nhóm nhé,</p>
+    <p class="font-script text-3xl text-brown -mt-1">Hoa Nguyễn</p>
+    <p class="text-xs tracking-[.2em] uppercase text-brown/60 mt-1">Ancha Marketing</p>
+  </div>
+
+  <a href="../" class="inline-block mt-8 text-sm text-brown/70 underline">← Về trang chủ Ancha Marketing</a>
+</div>
+
+<script>
+  // Cá nhân hoá lời chào theo tên khách (nếu có)
+  const params = new URLSearchParams(location.search);
+  let ten = params.get('ten');
+  if(!ten){ try{ ten = (JSON.parse(localStorage.getItem('sab_order')||'{}').ten)||''; }catch(e){} }
+  if(ten){ document.getElementById('greet').textContent = 'Chào mừng ' + ten + ' đã bắt đầu!'; }
+</script>
+</body>
+</html>
