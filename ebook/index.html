@@ -436,12 +436,12 @@
    (sau đó chạy /sab-payment-embed + /sab-make để tự động giao ebook)
    ========================================================================== */
 const CONFIG = {
-  BANK: 'MBBank',                 // Tên viết tắt ngân hàng theo SePay (VD: MBBank, Vietcombank, ACB...)
-  ACCOUNT: '0000000000',          // Số tài khoản nhận tiền
-  ACCOUNT_NAME: 'NGUYEN THI HOA', // Tên chủ tài khoản (in hoa, không dấu)
-  BANK_LABEL: 'MB Bank',          // Tên hiển thị cho khách xem
+  BANK: 'Sacombank',              // Ngân hàng theo SePay
+  ACCOUNT: 'SEP10008F271022',     // Tài khoản định danh SePay (Sacombank) — nơi khách chuyển tiền vào
+  ACCOUNT_NAME: 'NGUYEN THI HOA', // Tên chủ tài khoản
+  BANK_LABEL: 'Sacombank',        // Tên hiển thị cho khách xem
   AMOUNT: 399000,
-  WEBHOOK_URL: '',                // (Tuỳ chọn) URL webhook Make.com để lưu thông tin khách
+  WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbzInMHVh-5Va6vVrSf5WKfZaHt9PyVyv5Wz5z31CrSH7g4XuY5Ygua-JH3xdYfHVjZQsQ/exec', // (Mức 2) Google Apps Script — lưu đơn + gửi ebook tự động
   THANKYOU: 'cam-on.html'
 };
 
@@ -489,10 +489,11 @@ form.addEventListener('submit', async (ev)=>{
   // Lưu tạm (dùng cho trang cảm ơn)
   try { localStorage.setItem('sab_order', JSON.stringify({ten,email,sdt,orderCode})); } catch(e){}
 
-  // (Tuỳ chọn) gửi thông tin khách về Make.com
+  // Gửi thông tin khách về Google Apps Script (lưu đơn "chờ thanh toán")
+  // Dùng text/plain + no-cors để tránh preflight CORS khi gọi Apps Script web app
   if(CONFIG.WEBHOOK_URL){
     try{
-      fetch(CONFIG.WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      fetch(CONFIG.WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
         body: JSON.stringify({ten,email,sdt,orderCode,amount:CONFIG.AMOUNT,product:'Ebook Xay Shop Online'})});
     }catch(e){}
   }
