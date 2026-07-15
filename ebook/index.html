@@ -29,35 +29,11 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E">
 
-<script src="https://cdn.tailwindcss.com"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          cream:   '#F5E8DE',
-          cream2:  '#EFDFD2',
-          cream3:  '#E7D4C4',
-          ink:     '#4A3222',
-          brown:   '#6B4A34',
-          brownd:  '#3A2717',
-          gold:    '#C9A876',
-          goldd:   '#B08C55'
-        },
-        fontFamily: {
-          hand:   ['"Baloo 2"', 'cursive'],
-          script: ['"Dancing Script"', 'cursive'],
-          body:   ['"Be Vietnam Pro"', 'sans-serif']
-        }
-      }
-    }
-  }
-</script>
+<!-- CSS build sẵn thay Tailwind CDN — xem _noi-bo/Tự động hoá (code backup)/build-css.sh -->
+<link rel="stylesheet" href="../assets/tw.css">
 
 <style>
   html { scroll-behavior: smooth; }
@@ -124,6 +100,7 @@
       <div class="relative">
         <div class="absolute -inset-6 bg-gold/15 rounded-[2rem] blur-2xl"></div>
         <img src="assets/ebook-cover.jpg" alt="Bìa ebook Xây Shop Bán Hàng Online Thành Công"
+             width="640" height="906" fetchpriority="high" decoding="async"
              class="relative w-64 sm:w-80 rounded-xl book-shadow ring-1 ring-cream3">
         <div class="absolute -bottom-4 -right-3 sm:-right-5 bg-ink text-cream rounded-2xl px-4 py-2 text-center shadow-xl rotate-3">
           <div class="font-hand text-2xl font-extrabold leading-none">30</div>
@@ -180,7 +157,7 @@
     </div>
     <div class="reveal order-1 lg:order-2">
       <div class="relative">
-        <img src="assets/hoa-lam-viec.jpg" alt="Hoa gói đơn hàng tại nhà" class="rounded-2xl shadow-xl ring-1 ring-cream3 w-full object-cover">
+        <img src="assets/hoa-lam-viec.jpg" alt="Hoa gói đơn hàng tại nhà" width="1150" height="646" loading="lazy" decoding="async" class="rounded-2xl shadow-xl ring-1 ring-cream3 w-full object-cover">
         <div class="absolute -bottom-5 left-4 bg-cream border border-gold/50 rounded-2xl px-5 py-3 shadow-lg">
           <div class="font-hand text-xl font-bold text-ink leading-tight">Ảnh thật, việc thật</div>
           <div class="text-xs text-brown/80">không phông nền dựng sẵn</div>

@@ -28,17 +28,11 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%8D%EF%B8%8F%3C/text%3E%3C/svg%3E">
 
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-
-<script>
-  tailwind.config = { theme: { extend: {
-    colors: { cream:'#F5E8DE', cream2:'#EFDFD2', cream3:'#E7D4C4', ink:'#4A3222', brown:'#6B4A34', brownd:'#3A2717', gold:'#C9A876', goldd:'#B08C55' },
-    fontFamily: { hand:['"Baloo 2"','cursive'], script:['"Dancing Script"','cursive'], body:['"Be Vietnam Pro"','sans-serif'] }
-  }}}
-</script>
+<!-- CSS build sẵn thay Tailwind CDN — xem _noi-bo/Tự động hoá (code backup)/build-css.sh -->
+<link rel="stylesheet" href="../assets/tw.css">
 <style>
   html{scroll-behavior:smooth}
   body{font-family:'Be Vietnam Pro',sans-serif}
@@ -94,6 +88,7 @@
       <div class="relative">
         <div class="absolute -inset-6 bg-gold/15 rounded-[2rem] blur-2xl"></div>
         <img src="../assets/viet-content-cover.jpg" alt="Khoá học Viết Content Có Hồn Với AI"
+             width="1024" height="723" fetchpriority="high" decoding="async"
              class="relative w-full max-w-lg rounded-2xl shadow-2xl ring-1 ring-cream3">
       </div>
     </div>
