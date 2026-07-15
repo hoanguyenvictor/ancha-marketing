@@ -46,7 +46,14 @@
   .book-shadow { filter: drop-shadow(0 25px 35px rgba(58,39,23,.35)); }
   .paper { background-image: radial-gradient(rgba(74,50,34,.035) 1px, transparent 1px); background-size: 22px 22px; }
   .underline-hand { background: linear-gradient(120deg, rgba(201,168,118,.55) 0 100%); background-repeat:no-repeat; background-position:0 88%; background-size:100% 40%; }
+  /* Thanh CTA dính đáy (mobile): trượt xuống ẩn khi không cần —
+     tránh che nút hero + tránh khách bấm nhầm lúc đang điền form */
+  #sticky-cta { transition: transform .35s ease, opacity .35s ease; }
+  #sticky-cta.is-hidden { transform: translateY(110%); opacity: 0; pointer-events: none; }
 </style>
+<!-- Lưới an toàn: nếu JS bị chặn (hay gặp ở trình duyệt trong Facebook) thì nội dung
+     vẫn hiện, không bị trang trắng do .reveal đang để opacity:0 -->
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}#sticky-cta{display:none}</style></noscript>
 </head>
 <body class="bg-cream text-ink antialiased">
 
@@ -81,7 +88,7 @@
       </p>
 
       <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-        <a href="#dat-mua" class="cta-pulse inline-flex items-center justify-center gap-2 bg-brown text-cream px-8 py-4 rounded-full text-lg font-bold hover:bg-brownd transition">
+        <a href="#dat-mua" id="hero-cta" class="cta-pulse inline-flex items-center justify-center gap-2 bg-brown text-cream px-8 py-4 rounded-full text-lg font-bold hover:bg-brownd transition">
           📖 Nhận ebook ngay · 399.000đ
         </a>
         <a href="#ben-trong" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-brown/40 text-brown px-8 py-4 rounded-full text-lg font-semibold hover:bg-cream2 transition">
@@ -417,8 +424,8 @@
   </div>
 </footer>
 
-<!-- ===== MOBILE STICKY CTA ===== -->
-<a href="#dat-mua" class="sm:hidden fixed bottom-0 inset-x-0 z-50 bg-brown text-cream text-center py-4 font-bold text-lg shadow-[0_-8px_20px_rgba(58,39,23,.25)]">
+<!-- ===== THANH CTA DÍNH ĐÁY (mobile) — tự ẩn ở đầu trang & khi tới form đăng ký ===== -->
+<a href="#dat-mua" id="sticky-cta" class="is-hidden sm:hidden fixed bottom-0 inset-x-0 z-50 bg-brown text-cream text-center py-4 font-bold text-lg shadow-[0_-8px_20px_rgba(58,39,23,.25)]">
   📖 Nhận ebook · 399.000đ
 </a>
 
@@ -437,11 +444,15 @@ const CONFIG = {
   THANKYOU: 'cam-on.html'
 };
 
-/* ---- Scroll reveal ---- */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* ---- Scroll reveal (có lưới an toàn: trình duyệt cũ không hỗ trợ thì hiện hết luôn) ---- */
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
+}
 
 /* ---- FAQ accordion ---- */
 document.querySelectorAll('.faq-toggle').forEach(btn=>{
@@ -503,6 +514,22 @@ form.addEventListener('submit', async (ev)=>{
   stepPay.classList.remove('hidden');
   stepPay.scrollIntoView({behavior:'smooth', block:'center'});
 });
+
+/* ---- Thanh CTA dính đáy: chỉ hiện ở khúc giữa trang ----
+   Ẩn khi: (1) nút CTA đầu trang đang hiện -> đã có nút rồi, không cần
+           (2) đã tới phần đặt mua/form -> tránh khách bấm nhầm, mất thông tin vừa nhập */
+const stickyCta = document.getElementById('sticky-cta');
+if (stickyCta && 'IntersectionObserver' in window) {
+  const zones = ['hero-cta','dat-mua'].map(id => document.getElementById(id)).filter(Boolean);
+  const onScreen = new Set();
+  const ioSticky = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target));
+    stickyCta.classList.toggle('is-hidden', onScreen.size > 0);
+  }, { threshold: 0 });
+  zones.forEach(el => ioSticky.observe(el));
+} else if (stickyCta) {
+  stickyCta.classList.remove('is-hidden'); // trình duyệt cũ: cứ hiện nút cho khách bấm được
+}
 
 document.getElementById('btn-back').addEventListener('click', ()=>{
   stepPay.classList.add('hidden');

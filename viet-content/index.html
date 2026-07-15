@@ -42,6 +42,8 @@
   .paper{background-image:radial-gradient(rgba(74,50,34,.035) 1px,transparent 1px);background-size:22px 22px}
   .underline-hand{background:linear-gradient(120deg,rgba(201,168,118,.55) 0 100%);background-repeat:no-repeat;background-position:0 88%;background-size:100% 40%}
 </style>
+<!-- Lưới an toàn: JS bị chặn (trình duyệt trong Facebook...) thì nội dung vẫn hiện -->
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body class="bg-cream text-ink antialiased">
 
@@ -218,8 +220,12 @@
 </footer>
 
 <script>
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  if ('IntersectionObserver' in window) {
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('on'));
+  }
   document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
