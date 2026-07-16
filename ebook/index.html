@@ -50,6 +50,17 @@
      tránh che nút hero + tránh khách bấm nhầm lúc đang điền form */
   #sticky-cta { transition: transform .35s ease, opacity .35s ease; }
   #sticky-cta.is-hidden { transform: translateY(110%); opacity: 0; pointer-events: none; }
+  /* Cửa sổ thanh toán */
+  #pay-modal { display: none; }
+  #pay-modal.open { display: flex; }
+  .spin { width:18px; height:18px; flex:none; border:2.5px solid rgba(107,74,52,.25);
+          border-top-color:#6B4A34; border-radius:50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .copy-btn { flex:none; font-size:11px; font-weight:700; padding:3px 9px; border-radius:99px;
+              background:#6B4A34; color:#F5E8DE; transition: background .2s, transform .1s; }
+  .copy-btn:active { transform: scale(.94); }
+  .copy-btn.done { background:#2e7d32; }
+  details > summary::-webkit-details-marker { display: none; }
 </style>
 <!-- Lưới an toàn: nếu JS bị chặn (hay gặp ở trình duyệt trong Facebook) thì nội dung
      vẫn hiện, không bị trang trắng do .reveal đang để opacity:0 -->
@@ -312,28 +323,6 @@
           </form>
         </div>
 
-        <!-- STEP 2: payment (hidden until submit) -->
-        <div id="step-pay" class="hidden text-center">
-          <h3 class="font-hand text-2xl font-bold text-ink">Quét mã để thanh toán</h3>
-          <p class="text-brown/80 text-sm mt-1">Mở app ngân hàng → quét mã → chuyển đúng nội dung.</p>
-          <div class="mt-4 bg-white border border-cream3 rounded-2xl p-4 inline-block">
-            <img id="qr-img" src="" alt="Mã VietQR thanh toán" class="w-56 h-56 mx-auto object-contain">
-          </div>
-          <div class="mt-4 text-sm text-left max-w-xs mx-auto space-y-1 bg-cream2 rounded-xl p-4 border border-cream3">
-            <div class="flex justify-between"><span class="text-brown/70">Ngân hàng</span><b id="p-bank">—</b></div>
-            <div class="flex justify-between"><span class="text-brown/70">Số tài khoản</span><b id="p-acc">—</b></div>
-            <div class="flex justify-between"><span class="text-brown/70">Chủ tài khoản</span><b id="p-name">—</b></div>
-            <div class="flex justify-between"><span class="text-brown/70">Số tiền</span><b class="text-brown">399.000đ</b></div>
-            <div class="flex justify-between"><span class="text-brown/70">Nội dung CK</span><b id="p-des" class="text-brown">—</b></div>
-          </div>
-          <div class="mt-4 text-sm text-brown/85 bg-gold/15 border border-gold/40 rounded-xl p-3">
-            ⚡ Chuyển khoản đúng nội dung, hệ thống sẽ <b>tự động gửi ebook về email</b> của bạn trong ít phút.
-          </div>
-          <a id="btn-done" href="cam-on.html" class="mt-5 inline-flex w-full items-center justify-center gap-2 bg-brown text-cream py-4 rounded-full text-lg font-bold hover:bg-brownd transition">
-            Tôi đã chuyển khoản ✓
-          </a>
-          <button id="btn-back" type="button" class="mt-2 text-sm text-brown/70 underline">← Sửa lại thông tin</button>
-        </div>
       </div>
     </div>
 
@@ -424,6 +413,90 @@
   </div>
 </footer>
 
+<!-- ═══════════ CỬA SỔ THANH TOÁN (hiện sau khi bấm Đặt mua) ═══════════ -->
+<div id="pay-modal" class="fixed inset-0 z-[70] items-center justify-center p-3 bg-brownd/70 overflow-y-auto">
+  <div class="relative bg-cream w-full max-w-md rounded-3xl shadow-2xl my-4">
+    <button id="pay-close" type="button" aria-label="Đóng cửa sổ"
+            class="absolute top-3 right-3 w-9 h-9 rounded-full bg-cream2 text-brown hover:bg-cream3 transition leading-none text-lg">✕</button>
+
+    <div class="p-6 sm:p-7 text-center">
+      <h3 class="font-hand text-2xl font-bold text-ink">Quét mã để thanh toán</h3>
+      <p class="text-brown/80 text-sm mt-1">Mở app ngân hàng → quét mã → chuyển khoản</p>
+
+      <!-- Mã QR -->
+      <div class="mt-4 bg-white border border-cream3 rounded-2xl p-3 inline-block">
+        <img id="qr-img" src="" alt="Mã VietQR thanh toán" width="224" height="224" class="w-56 h-56 mx-auto object-contain">
+      </div>
+
+      <!-- Thông tin chuyển khoản — bấm để chép -->
+      <div class="mt-4 text-sm text-left space-y-2.5 bg-cream2 rounded-2xl p-4 border border-cream3">
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-brown/70 shrink-0">Ngân hàng</span><b id="p-bank">—</b>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-brown/70 shrink-0">Chủ tài khoản</span><b id="p-name" class="text-right">—</b>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-brown/70 shrink-0">Số tài khoản</span>
+          <span class="flex items-center gap-2 min-w-0">
+            <b id="p-acc" class="text-right">—</b>
+            <button type="button" class="copy-btn" data-copy="p-acc">Chép</button>
+          </span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-brown/70 shrink-0">Số tiền</span>
+          <span class="flex items-center gap-2">
+            <b id="p-amount" class="text-brown">399.000đ</b>
+            <button type="button" class="copy-btn" data-copy="p-amount" data-raw="399000">Chép</button>
+          </span>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span class="text-brown/70 shrink-0">Nội dung CK</span>
+          <span class="flex items-center gap-2 min-w-0">
+            <b id="p-des" class="text-brown text-right">—</b>
+            <button type="button" class="copy-btn" data-copy="p-des">Chép</button>
+          </span>
+        </div>
+        <p class="text-xs text-brown/60 pt-1">⚠️ Chuyển <b>đúng nội dung</b> để hệ thống tự nhận diện đơn của bạn.</p>
+      </div>
+
+      <!-- Trạng thái xác thực -->
+      <div id="pay-status" class="mt-4 rounded-2xl p-4 border border-gold/40 bg-gold/15">
+        <div class="flex items-center justify-center gap-2">
+          <span id="pay-spin" class="spin"></span>
+          <b id="pay-status-text" class="text-ink">Đang chờ xác thực thanh toán…</b>
+        </div>
+        <p id="pay-status-sub" class="text-xs text-brown/80 mt-1.5">⚠️ Vui lòng <b>KHÔNG tắt cửa sổ này</b> cho tới khi xác thực xong</p>
+      </div>
+
+      <!-- Hỗ trợ (ẩn, bấm mới mở) -->
+      <details class="mt-4 text-left group">
+        <summary class="cursor-pointer list-none text-sm font-semibold text-brown underline text-center">
+          Click vào đây nếu cần hỗ trợ
+        </summary>
+        <div class="mt-3 bg-white border border-cream3 rounded-2xl p-4 text-sm space-y-3">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-brown/70">Zalo hỗ trợ</span>
+            <span class="flex items-center gap-2">
+              <b id="help-zalo">0867231868</b>
+              <button type="button" class="copy-btn" data-copy="help-zalo">Chép</button>
+            </span>
+          </div>
+          <p class="text-brown/85 leading-relaxed">
+            Nếu bạn <b>đã chuyển khoản</b> mà cửa sổ chưa báo xác thực thành công,
+            vui lòng <b>gửi ảnh chụp chuyển khoản</b> qua Zalo trên — Hoa sẽ kiểm tra
+            và gửi ebook cho bạn ngay nhé.
+          </p>
+          <a href="https://zalo.me/0867231868" target="_blank" rel="noopener"
+             class="block text-center bg-[#0068FF] text-white py-2.5 rounded-full font-semibold hover:brightness-95 transition">
+            💬 Mở Zalo nhắn Hoa
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
+
 <!-- ===== THANH CTA DÍNH ĐÁY (mobile) — tự ẩn ở đầu trang & khi tới form đăng ký ===== -->
 <a href="#dat-mua" id="sticky-cta" class="is-hidden sm:hidden fixed bottom-0 inset-x-0 z-50 bg-brown text-cream text-center py-4 font-bold text-lg shadow-[0_-8px_20px_rgba(58,39,23,.25)]">
   📖 Nhận ebook · 399.000đ
@@ -466,15 +539,87 @@ document.querySelectorAll('.faq-toggle').forEach(btn=>{
 /* ---- Year ---- */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---- Order form → payment ---- */
-const form = document.getElementById('order-form');
-const stepForm = document.getElementById('step-form');
-const stepPay  = document.getElementById('step-pay');
-const errEl    = document.getElementById('form-err');
+/* ==================== ĐẶT MUA → CỬA SỔ THANH TOÁN ==================== */
+const form  = document.getElementById('order-form');
+const errEl = document.getElementById('form-err');
+const modal = document.getElementById('pay-modal');
+let pollTimer = null;
 
 function showErr(msg){ errEl.textContent = msg; errEl.classList.remove('hidden'); }
 
-form.addEventListener('submit', async (ev)=>{
+/* ---- Chép vào clipboard (có phương án dự phòng cho trình duyệt cũ / trong app FB) ---- */
+async function copyText(text, btn){
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; }
+  catch(e){
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      ok = document.execCommand('copy'); ta.remove();
+    }catch(e2){}
+  }
+  if(btn){
+    const old = btn.textContent;
+    btn.textContent = ok ? '✓ Đã chép' : 'Thử lại';
+    if(ok) btn.classList.add('done');
+    setTimeout(()=>{ btn.textContent = old; btn.classList.remove('done'); }, 1500);
+  }
+}
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.copy-btn');
+  if(!btn) return;
+  const el = document.getElementById(btn.dataset.copy);
+  copyText(btn.dataset.raw || (el ? el.textContent.trim() : ''), btn);
+});
+
+/* ---- Hỏi Apps Script: đơn đã thanh toán chưa?
+       Dùng JSONP vì gọi thẳng sang script.google.com sẽ bị CORS chặn ---- */
+function checkPaid(code){
+  return new Promise(resolve=>{
+    if(!CONFIG.WEBHOOK_URL) return resolve(false);
+    const cb = 'ancha_cb_' + Math.random().toString(36).slice(2,10);
+    const s  = document.createElement('script');
+    let settled = false;
+    const done = (v)=>{ if(settled) return; settled = true;
+      try{ delete window[cb]; }catch(e){ window[cb] = undefined; }
+      s.remove(); resolve(v); };
+    window[cb] = (d)=> done(!!(d && d.paid));
+    s.onerror  = ()=> done(false);
+    s.src = CONFIG.WEBHOOK_URL + '?action=check&callback=' + cb +
+            '&code=' + encodeURIComponent(code) + '&t=' + Date.now();
+    document.body.appendChild(s);
+    setTimeout(()=> done(false), 12000);   // lượt này quá lâu -> bỏ qua, lượt sau hỏi tiếp
+  });
+}
+
+/* ---- Đổi giao diện khi xác thực xong ---- */
+function markPaid(){
+  const box = document.getElementById('pay-status');
+  box.className = 'mt-4 rounded-2xl p-4 border border-green-600/40 bg-green-600/10';
+  document.getElementById('pay-spin').style.display = 'none';
+  document.getElementById('pay-status-text').textContent = '✅ Đã xác thực thanh toán!';
+  document.getElementById('pay-status-sub').textContent = 'Đang chuyển tới trang cảm ơn…';
+}
+
+/* ---- Theo dõi thanh toán: hỏi 5 giây/lần, tối đa ~20 phút ---- */
+function startPolling(code, ten){
+  clearInterval(pollTimer);
+  let tries = 0;
+  const tick = async ()=>{
+    if(await checkPaid(code)){
+      clearInterval(pollTimer);
+      markPaid();
+      setTimeout(()=>{ location.href = CONFIG.THANKYOU + '?ten=' + encodeURIComponent(ten); }, 1600);
+      return;
+    }
+    if(++tries > 240) clearInterval(pollTimer);
+  };
+  tick();
+  pollTimer = setInterval(tick, 5000);
+}
+
+form.addEventListener('submit', (ev)=>{
   ev.preventDefault();
   errEl.classList.add('hidden');
   const ten   = document.getElementById('ten').value.trim();
@@ -489,11 +634,9 @@ form.addEventListener('submit', async (ev)=>{
   const rand = Math.random().toString(36).slice(2,5).toUpperCase();
   const orderCode = 'EBOOK' + sdt.slice(-4) + rand;
 
-  // Lưu tạm (dùng cho trang cảm ơn)
   try { localStorage.setItem('sab_order', JSON.stringify({ten,email,sdt,orderCode})); } catch(e){}
 
-  // Gửi thông tin khách về Google Apps Script (lưu đơn "chờ thanh toán")
-  // Dùng text/plain + no-cors để tránh preflight CORS khi gọi Apps Script web app
+  // Lưu đơn "chờ thanh toán" về Apps Script (text/plain + no-cors để tránh preflight CORS)
   if(CONFIG.WEBHOOK_URL){
     try{
       fetch(CONFIG.WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},
@@ -501,18 +644,24 @@ form.addEventListener('submit', async (ev)=>{
     }catch(e){}
   }
 
-  // Tạo mã VietQR SePay
-  const qr = `https://qr.sepay.vn/img?acc=${encodeURIComponent(CONFIG.ACCOUNT)}&bank=${encodeURIComponent(CONFIG.BANK)}&amount=${CONFIG.AMOUNT}&des=${encodeURIComponent(orderCode)}&template=compact`;
-  document.getElementById('qr-img').src = qr;
+  document.getElementById('qr-img').src =
+    `https://qr.sepay.vn/img?acc=${encodeURIComponent(CONFIG.ACCOUNT)}&bank=${encodeURIComponent(CONFIG.BANK)}&amount=${CONFIG.AMOUNT}&des=${encodeURIComponent(orderCode)}&template=compact`;
   document.getElementById('p-bank').textContent = CONFIG.BANK_LABEL;
   document.getElementById('p-acc').textContent  = CONFIG.ACCOUNT;
   document.getElementById('p-name').textContent = CONFIG.ACCOUNT_NAME;
   document.getElementById('p-des').textContent  = orderCode;
-  document.getElementById('btn-done').href = CONFIG.THANKYOU + '?ten=' + encodeURIComponent(ten);
 
-  stepForm.classList.add('hidden');
-  stepPay.classList.remove('hidden');
-  stepPay.scrollIntoView({behavior:'smooth', block:'center'});
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';   // khoá cuộn nền
+  startPolling(orderCode, ten);
+});
+
+/* ---- Đóng cửa sổ (có hỏi lại vì đang theo dõi thanh toán) ---- */
+document.getElementById('pay-close').addEventListener('click', ()=>{
+  if(!confirm('Bạn chắc chắn muốn đóng? Hệ thống sẽ ngừng theo dõi thanh toán của bạn.')) return;
+  clearInterval(pollTimer);
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
 });
 
 /* ---- Thanh CTA dính đáy: chỉ hiện ở khúc giữa trang ----
@@ -531,10 +680,6 @@ if (stickyCta && 'IntersectionObserver' in window) {
   stickyCta.classList.remove('is-hidden'); // trình duyệt cũ: cứ hiện nút cho khách bấm được
 }
 
-document.getElementById('btn-back').addEventListener('click', ()=>{
-  stepPay.classList.add('hidden');
-  stepForm.classList.remove('hidden');
-});
 </script>
 </body>
 </html>
