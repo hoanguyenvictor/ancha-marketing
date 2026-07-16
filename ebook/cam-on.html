@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../assets/pixel.js"></script>
 <title>Cảm ơn bạn! — Hoa Nguyễn</title>
 <meta name="robots" content="noindex">
 
@@ -115,6 +116,20 @@
 
   const ten = params.get('ten') || order.ten || '';
   if (ten) document.getElementById('greet').textContent = 'Chào mừng ' + ten + ' đã bắt đầu!';
+
+  // ===== Pixel: bắn sự kiện PURCHASE cho quảng cáo (chỉ 1 lần / đơn) =====
+  // Trang này chỉ tới được sau khi thanh toán đã xác thực -> đúng là đơn thật.
+  try {
+    const oc = order.orderCode || '';
+    if (oc && localStorage.getItem('sab_purchase_tracked') !== oc) {
+      window.anchaTrack && anchaTrack('Purchase', {
+        content_name: 'Ebook Xay Shop Ban Hang Online Thanh Cong',
+        content_ids: ['ebook-xayshop'], content_type: 'product',
+        value: 399000, currency: 'VND', num_items: 1
+      });
+      localStorage.setItem('sab_purchase_tracked', oc);   // chống bắn trùng khi tải lại trang
+    }
+  } catch (e) {}
 
   // Hiện đúng email khách đã điền -> khỏi mở nhầm hộp thư khác
   if (order.email) {

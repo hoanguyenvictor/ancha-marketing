@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="../assets/pixel.js"></script>
 <title>Xây Shop Bán Hàng Online Thành Công — Ebook của Hoa Nguyễn</title>
 <meta name="description" content="Ebook cầm tay chỉ việc cho người mới bắt đầu bán hàng online tại nhà — từ số 0, vốn nhỏ, không cần rành công nghệ. Viết bởi Hoa Nguyễn, Ancha Marketing.">
 
@@ -544,6 +545,13 @@ document.querySelectorAll('.faq-toggle').forEach(btn=>{
 /* ---- Year ---- */
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ---- Pixel: khách đã xem trang bán ebook ---- */
+window.anchaTrack && anchaTrack('ViewContent', {
+  content_name: 'Ebook Xay Shop Ban Hang Online Thanh Cong',
+  content_ids: ['ebook-xayshop'], content_type: 'product',
+  value: 399000, currency: 'VND'
+});
+
 /* ==================== ĐẶT MUA → CỬA SỔ THANH TOÁN ==================== */
 const form  = document.getElementById('order-form');
 const errEl = document.getElementById('form-err');
@@ -659,6 +667,13 @@ form.addEventListener('submit', (ev)=>{
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';   // khoá cuộn nền
   startPolling(orderCode, ten);
+
+  /* ---- Pixel: khách bấm Đặt mua -> bắt đầu thanh toán ---- */
+  window.anchaTrack && anchaTrack('InitiateCheckout', {
+    content_name: 'Ebook Xay Shop Ban Hang Online Thanh Cong',
+    content_ids: ['ebook-xayshop'], content_type: 'product',
+    value: 399000, currency: 'VND', num_items: 1
+  });
 });
 
 /* ---- Đóng cửa sổ (có hỏi lại vì đang theo dõi thanh toán) ---- */
