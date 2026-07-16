@@ -52,7 +52,7 @@
   #sticky-cta.is-hidden { transform: translateY(110%); opacity: 0; pointer-events: none; }
   /* Cửa sổ thanh toán */
   #pay-modal { display: none; }
-  #pay-modal.open { display: flex; }
+  #pay-modal.open { display: block; }   /* lớp trong lo việc căn giữa */
   .spin { width:18px; height:18px; flex:none; border:2.5px solid rgba(107,74,52,.25);
           border-top-color:#6B4A34; border-radius:50%; animation: spin .8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -414,8 +414,12 @@
 </footer>
 
 <!-- ═══════════ CỬA SỔ THANH TOÁN (hiện sau khi bấm Đặt mua) ═══════════ -->
-<div id="pay-modal" class="fixed inset-0 z-[70] items-center justify-center p-3 bg-brownd/70 overflow-y-auto">
-  <div class="relative bg-cream w-full max-w-md rounded-3xl shadow-2xl my-4">
+<!-- Cấu trúc 2 lớp: lớp ngoài cuộn, lớp trong căn giữa.
+     KHÔNG gộp 'items-center' + cuộn vào 1 lớp — nội dung cao hơn màn hình sẽ
+     bị cắt phần trên và không cuộn lên được (lỗi đã gặp trên điện thoại). -->
+<div id="pay-modal" class="fixed inset-0 z-[70] bg-brownd/70 overflow-y-auto">
+ <div class="flex min-h-full items-center justify-center p-3">
+  <div class="relative bg-cream w-full max-w-md rounded-3xl shadow-2xl">
     <button id="pay-close" type="button" aria-label="Đóng cửa sổ"
             class="absolute top-3 right-3 w-9 h-9 rounded-full bg-cream2 text-brown hover:bg-cream3 transition leading-none text-lg">✕</button>
 
@@ -495,6 +499,7 @@
       </details>
     </div>
   </div>
+ </div>
 </div>
 
 <!-- ===== THANH CTA DÍNH ĐÁY (mobile) — tự ẩn ở đầu trang & khi tới form đăng ký ===== -->
