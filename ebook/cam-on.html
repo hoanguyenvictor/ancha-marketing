@@ -32,7 +32,7 @@
   <h1 id="greet" class="text-3xl sm:text-4xl font-extrabold text-ink mt-1">Chào mừng bạn đã bắt đầu!</h1>
 
   <p class="mt-5 text-lg text-brown/90 leading-relaxed">
-    Ebook <b>“Xây Shop Bán Hàng Online Thành Công”</b> đang được gửi tự động về email của bạn — bạn nhớ kiểm tra cả hộp thư <b>Quảng cáo / Spam</b> nếu chưa thấy trong ít phút nữa nhé.
+    Ebook <b>“Xây Shop Bán Hàng Online Thành Công”</b> đang được gửi tự động về email của bạn<span id="cust-email"></span> — thường tới trong <b>1–2 phút</b>.
   </p>
 
   <!-- Zalo group -->
@@ -46,6 +46,58 @@
     <p class="text-xs text-brown/60 mt-3">Nhóm miễn phí · nơi mình trực tiếp hỗ trợ bạn</p>
   </div>
 
+  <!-- ===== CHƯA THẤY EMAIL? ===== -->
+  <div class="mt-6 bg-cream2 border border-cream3 rounded-3xl p-6 sm:p-7 text-left">
+    <div class="font-hand text-xl font-bold text-ink text-center">📬 Chưa thấy email? Đừng lo!</div>
+    <p class="text-brown/85 text-sm mt-2 text-center">
+      Email tự động rất hay bị hộp thư xếp nhầm chỗ. Bạn kiểm tra kỹ <b>4 nơi</b> này giúp mình nhé:
+    </p>
+
+    <ol class="mt-4 space-y-3 text-sm">
+      <li class="flex gap-3">
+        <span class="shrink-0 w-6 h-6 rounded-full bg-gold/30 text-brown font-bold flex items-center justify-center text-xs">1</span>
+        <span><b>Tab “Quảng cáo” / “Promotions”</b> — Gmail thường tự xếp email mới vào đây thay vì Hộp thư chính. Đây là <b>chỗ hay gặp nhất</b>.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="shrink-0 w-6 h-6 rounded-full bg-gold/30 text-brown font-bold flex items-center justify-center text-xs">2</span>
+        <span><b>Thư rác / Spam / Junk</b> — nếu thấy, bạn bấm <b>“Không phải thư rác”</b> để lần sau email về đúng hộp thư chính.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="shrink-0 w-6 h-6 rounded-full bg-gold/30 text-brown font-bold flex items-center justify-center text-xs">3</span>
+        <span><b>Gõ tìm kiếm</b> trong hộp thư: <b class="bg-white px-1.5 py-0.5 rounded border border-cream3">Ancha</b> hoặc <b class="bg-white px-1.5 py-0.5 rounded border border-cream3">ebook</b> — cách này tìm được cả thư đang nằm ở mục khác.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="shrink-0 w-6 h-6 rounded-full bg-gold/30 text-brown font-bold flex items-center justify-center text-xs">4</span>
+        <span><b>Đợi thêm 5–10 phút</b> rồi kéo làm mới hộp thư — đôi khi email về hơi chậm một chút.</span>
+      </li>
+    </ol>
+
+    <!-- Vẫn không thấy -> Zalo -->
+    <div class="mt-6 pt-5 border-t border-cream3 text-center">
+      <div class="font-bold text-ink">Làm hết rồi mà vẫn không thấy?</div>
+      <p class="text-brown/85 text-sm mt-1">Bạn <b>nhắn Zalo cho Hoa</b> nhé — Hoa gửi tay ebook cho bạn ngay, đừng ngại ạ!</p>
+
+      <div class="mt-4 inline-block bg-white border border-cream3 rounded-2xl p-3 shadow-md">
+        <img src="../assets/zalo-qr.png" alt="Mã QR Zalo của Hoa Nguyễn — 0867231868"
+             width="180" height="180" loading="lazy" decoding="async"
+             class="w-44 h-44 mx-auto">
+        <div class="text-xs text-brown/70 mt-1">Quét mã để nhắn Hoa</div>
+      </div>
+
+      <div class="mt-3 flex items-center justify-center gap-2 text-sm">
+        <span class="text-brown/70">Zalo:</span>
+        <b id="zalo-num" class="text-ink">0867231868</b>
+        <button type="button" id="copy-zalo" class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-brown text-cream">Chép</button>
+      </div>
+
+      <a href="https://zalo.me/0867231868" target="_blank" rel="noopener"
+         class="mt-4 inline-flex w-full items-center justify-center gap-2 bg-[#0068FF] text-white py-3 rounded-full font-bold hover:brightness-95 transition">
+        💬 Nhắn Hoa qua Zalo
+      </a>
+      <p class="text-xs text-brown/60 mt-3">Nếu bạn <b>đã chuyển khoản</b> mà chưa nhận được ebook, gửi kèm <b>ảnh chụp chuyển khoản</b> để Hoa kiểm tra nhanh hơn nhé.</p>
+    </div>
+  </div>
+
   <div class="mt-8 text-brown/90">
     <p class="font-script text-3xl text-brown">Hẹn gặp bạn trong nhóm nhé,</p>
     <p class="font-script text-3xl text-brown -mt-1">Hoa Nguyễn</p>
@@ -56,11 +108,39 @@
 </div>
 
 <script>
-  // Cá nhân hoá lời chào theo tên khách (nếu có)
+  // Cá nhân hoá theo đơn khách vừa đặt (nếu có)
   const params = new URLSearchParams(location.search);
-  let ten = params.get('ten');
-  if(!ten){ try{ ten = (JSON.parse(localStorage.getItem('sab_order')||'{}').ten)||''; }catch(e){} }
-  if(ten){ document.getElementById('greet').textContent = 'Chào mừng ' + ten + ' đã bắt đầu!'; }
+  let order = {};
+  try { order = JSON.parse(localStorage.getItem('sab_order') || '{}'); } catch(e) {}
+
+  const ten = params.get('ten') || order.ten || '';
+  if (ten) document.getElementById('greet').textContent = 'Chào mừng ' + ten + ' đã bắt đầu!';
+
+  // Hiện đúng email khách đã điền -> khỏi mở nhầm hộp thư khác
+  if (order.email) {
+    const el = document.getElementById('cust-email');
+    el.textContent = ': ' + order.email;      // textContent -> an toàn, không dính chèn mã
+    el.className = 'text-ink font-bold';
+  }
+
+  // Chép số Zalo (có phương án dự phòng cho trình duyệt cũ / trong app Facebook)
+  document.getElementById('copy-zalo').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const num = document.getElementById('zalo-num').textContent.trim();
+    let ok = false;
+    try { await navigator.clipboard.writeText(num); ok = true; }
+    catch (err) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        ok = document.execCommand('copy'); ta.remove();
+      } catch (e2) {}
+    }
+    const old = btn.textContent;
+    btn.textContent = ok ? '✓ Đã chép' : 'Thử lại';
+    setTimeout(() => { btn.textContent = old; }, 1500);
+  });
 </script>
 </body>
 </html>
