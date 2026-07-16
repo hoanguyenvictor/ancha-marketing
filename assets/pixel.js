@@ -4,7 +4,7 @@
       Lấy ở: business.facebook.com → Trình quản lý sự kiện → Nguồn dữ liệu
    VD:  window.ANCHA_PIXEL_ID = '1234567890123456';
    ============================================================ */
-window.ANCHA_PIXEL_ID = '';
+window.ANCHA_PIXEL_ID = '1542966343372354';
 
 (function () {
   var ID = window.ANCHA_PIXEL_ID;
